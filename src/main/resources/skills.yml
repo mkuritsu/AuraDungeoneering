@@ -1,0 +1,7 @@
+skills:
+  auradungeoneering/dungeoneering:
+    name: Test Skill
+    display_name: Test Skill Display
+    options:
+      enabled: true
+      max_level: 100

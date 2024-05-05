@@ -1,0 +1,7 @@
+sources:
+  completing_dungeon:
+    type: auradungeoneering/completing_dungeon
+    xp: 20
+    display_name: "Completing a dungeon"
+    menu_item:
+      material: emerald

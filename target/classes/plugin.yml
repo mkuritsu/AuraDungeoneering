@@ -1,0 +1,8 @@
+name: AuraDungeoneering
+version: '1.0-SNAPSHOT'
+main: io.github.itstaylz.auradungeoneering.AuraDungeoneeringPlugin
+api-version: '1.20'
+authors: [itsTaylz]
+description: A Dungeoneering addon for AuraSkills.
+website: itstaylz.github.io
+depend: [AuraSkills]
