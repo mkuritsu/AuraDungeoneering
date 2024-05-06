@@ -23,15 +23,15 @@ public class AuraCustomContentLoader {
     private final DungeoneeringSkill skill;
     private final JavaPlugin plugin;
 
-    public AuraCustomContentLoader(JavaPlugin plugin) {
+    public AuraCustomContentLoader(JavaPlugin plugin, AuraDungeoneeringConfig config) {
         this.plugin = plugin;
-        this.dungeonLootBonusTrait = new MythicDungeonLootBonusTrait(plugin);
-        this.bossAttackBonusTrait = new MythicMobBossAttackBonusTrait(plugin);
-        this.bossDefenseBonusTrait = new MythicMobBossDefenseBonusTrait(plugin);
-        this.mobDefenseBonusTrait = new MythicMobDefenseBonusTrait(plugin);
+        this.dungeonLootBonusTrait = new MythicDungeonLootBonusTrait(plugin, config);
+        this.bossAttackBonusTrait = new MythicMobBossAttackBonusTrait(plugin, config);
+        this.bossDefenseBonusTrait = new MythicMobBossDefenseBonusTrait(plugin, config);
+        this.mobDefenseBonusTrait = new MythicMobDefenseBonusTrait(plugin, config);
         this.stat = new DungeoneeringStat(plugin, Arrays.asList(this.dungeonLootBonusTrait, this.bossAttackBonusTrait,
-                this.bossDefenseBonusTrait, this.mobDefenseBonusTrait));
-        this.skill = new DungeoneeringSkill(plugin);
+                this.bossDefenseBonusTrait, this.mobDefenseBonusTrait), config);
+        this.skill = new DungeoneeringSkill(plugin, config);
     }
 
     public void register() {

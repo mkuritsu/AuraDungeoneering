@@ -1,11 +1,6 @@
 patterns:
   - type: stat
-    stat: toughness
+    stat: auradungeoneering/dungeoneering_expertise
     value: 1
     pattern:
       interval: 1
-  - type: stat
-    stat: luck
-    value: 1
-    pattern:
-      interval: 2

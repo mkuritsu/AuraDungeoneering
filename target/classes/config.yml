@@ -1,0 +1,23 @@
+skills:
+  dungeoneering:
+    name: "Dungeoneering"
+    description: "Complete dungeons to earn XP"
+    material: "skeleton_skull"
+    pos: "4,4"
+
+stats:
+  dungeoneering:
+    name: "Dungeoneering Expertise"
+    description: "How much expert you are in dungeons"
+    color: "<green>"
+    material: "emerald"
+
+traits:
+  mythic_dungeon_loot_bonus:
+    name: "Mythic Dungeon Loot Bonus"
+  mythic_boss_attack_bonus:
+    name: "Boss Attack Bonus"
+  mythic_boss_defense_bonus:
+    name: "Boss Defense Bonus"
+  mob_defense_bonus:
+    name: "Mob Defense Bonus"

@@ -47,7 +47,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.3.1</version>
                 <configuration>
-                    <outputDirectory>/home/rodrigo/Minecraft/Server/plugins</outputDirectory>
+                    <outputDirectory>C:\Users\Rodrigo\Documents\Minecraft\Server\pluginsaura</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>
