@@ -1,7 +1,6 @@
 package io.github.itstaylz.auradungeoneering;
 
 import io.github.itstaylz.auradungeoneering.listeners.DungeonListener;
-import io.github.itstaylz.auradungeoneering.listeners.MythicMobsListener;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
@@ -9,20 +8,23 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class AuraDungeoneeringPlugin extends JavaPlugin implements Listener {
 
-    private final AuraDungeoneeringConfig config = new AuraDungeoneeringConfig(this);
-    private final AuraCustomContentLoader contentLoader = new AuraCustomContentLoader(this, config);
+    private AuraDungeoneeringConfig config;
+    private DungeoneeringCustomContent contentLoader;
 
     @Override
     public void onEnable() {
         saveResource("sources/dungeoneering.yml", false);
         saveResource("rewards/dungeoneering.yml", false);
+        saveResource("skills.yml", false);
+        saveResource("stats.yml", false);
+        this.config = new AuraDungeoneeringConfig(this);
+        this.contentLoader = new DungeoneeringCustomContent(this, config);
         this.contentLoader.register();
         registerEvents();
     }
 
     private void registerEvents() {
         PluginManager pm = Bukkit.getPluginManager();
-        pm.registerEvents(new DungeonListener(this.contentLoader), this);
-        pm.registerEvents(new MythicMobsListener(), this);
+        pm.registerEvents(new DungeonListener(this.contentLoader, this.config), this);
     }
 }

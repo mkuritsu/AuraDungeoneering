@@ -1,7 +1,7 @@
 skills:
   auradungeoneering/dungeoneering:
-    name: Test Skill
-    display_name: Test Skill Display
+    name: "Dungeoneering"
+    display_name: "Evolve your skill by completing dungeons"
     options:
       enabled: true
       max_level: 100

@@ -2,31 +2,37 @@ package io.github.itstaylz.auradungeoneering.listeners;
 
 import dev.aurelium.auraskills.api.AuraSkillsApi;
 import dev.aurelium.auraskills.api.source.SkillSource;
-import io.github.itstaylz.auradungeoneering.AuraCustomContentLoader;
-import io.github.itstaylz.auradungeoneering.sources.CompleteDungeonSource;
+import io.github.itstaylz.auradungeoneering.AuraDungeoneeringConfig;
+import io.github.itstaylz.auradungeoneering.DungeoneeringCustomContent;
+import io.github.itstaylz.auradungeoneering.sources.CompletingDungeonSource;
 import net.playavalon.mythicdungeons.api.events.dungeon.PlayerFinishDungeonEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
+import java.util.Calendar;
+
 public class DungeonListener implements Listener {
 
-    private final AuraCustomContentLoader contentLoader;
+    private final DungeoneeringCustomContent contentLoader;
+    private final AuraDungeoneeringConfig config;
     private final AuraSkillsApi auraSkills;
 
-    public DungeonListener(AuraCustomContentLoader contentLoader) {
+    public DungeonListener(DungeoneeringCustomContent contentLoader, AuraDungeoneeringConfig config) {
         this.contentLoader = contentLoader;
         this.auraSkills = AuraSkillsApi.get();
+        this.config = config;
     }
 
     @EventHandler
     private void onFinish(PlayerFinishDungeonEvent event) {
         Player player = event.getPlayer();
-        SkillSource<CompleteDungeonSource> skillSource = this.auraSkills.getSourceManager().getSingleSourceOfType(CompleteDungeonSource.class);
+        SkillSource<CompletingDungeonSource> skillSource = this.auraSkills.getSourceManager().getSingleSourceOfType(CompletingDungeonSource.class);
         if (skillSource != null) {
-            CompleteDungeonSource dungeonSource = skillSource.source();
+            CompletingDungeonSource dungeonSource = skillSource.source();
             double xp = dungeonSource.getXp();
-            this.auraSkills.getUser(player.getUniqueId()).addSkillXp(this.contentLoader.getSkill().getSkill(), xp, dungeonSource);
+            double multiplier = this.config.getWeekdayXpMultiplier(Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
+            this.auraSkills.getUser(player.getUniqueId()).addSkillXp(this.contentLoader.getDungeoneeringSkill(), xp * multiplier, dungeonSource);
         }
     }
 }

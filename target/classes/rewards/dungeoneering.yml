@@ -1,6 +1,26 @@
 patterns:
   - type: stat
-    stat: auradungeoneering/dungeoneering_expertise
+    stat: auradungeoneering/mythic_dungeon_loot_bonus
+    value: 1
+    pattern:
+      interval: 1
+  - type: stat
+    stat: auradungeoneering/mythic_boss_attack_bonus
+    value: 1
+    pattern:
+      interval: 1
+  - type: stat
+    stat: auradungeoneering/mythic_boss_defense_bonus
+    value: 1
+    pattern:
+      interval: 1
+  - type: stat
+    stat: auradungeoneering/mythic_mob_defense_bonus
+    value: 1
+    pattern:
+      interval: 1
+  - type: stat
+    stat: auradungeoneering/mythic_mob_attack_bonus
     value: 1
     pattern:
       interval: 1
