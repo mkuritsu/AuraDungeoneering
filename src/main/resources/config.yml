@@ -1,14 +1,14 @@
 skills:
   dungeoneering:
-    name: "Dungeoneering"
-    description: "Complete dungeons to earn XP"
-    material: "skeleton_skull"
-    pos: "4,4"
+    name: "Dungeoneering" # Name to be displayed
+    description: "Complete dungeons to earn XP" #
+    material: "skeleton_skull" # material to be used in the menu
+    pos: "4,4" # position in the menu
 
 stats:
   mythic_dungeon_loot_bonus:
     name: "Dungeon Loot Bonus"
-    description: "How much loot you gain in dungeons."
+    description: "How much extra loot you gain inside dungeons."
     color: "<yellow>"
     symbol: "🪙"
     material: "gold_ingot"
@@ -52,8 +52,14 @@ traits:
 weekdays_xp_multiplier:
   monday: 1
   tuesday: 1
-  wednesday: 100
+  wednesday: 1
   thursday: 1
   friday: 1
   saturday: 2
   sunday: 2
+
+bosses:
+  - "SkeletalKnight"
+
+loottables:
+  SkeletalKnight: "Bonnn"

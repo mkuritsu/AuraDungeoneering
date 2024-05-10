@@ -1,6 +1,7 @@
 package io.github.itstaylz.auradungeoneering;
 
 import io.github.itstaylz.auradungeoneering.listeners.DungeonListener;
+import io.github.itstaylz.auradungeoneering.manager.BossManager;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
@@ -18,6 +19,7 @@ public final class AuraDungeoneeringPlugin extends JavaPlugin implements Listene
         saveResource("skills.yml", false);
         saveResource("stats.yml", false);
         this.config = new AuraDungeoneeringConfig(this);
+        this.config.getBosses().forEach(BossManager.getInstance()::addBoss);
         this.contentLoader = new DungeoneeringCustomContent(this, config);
         this.contentLoader.register();
         registerEvents();

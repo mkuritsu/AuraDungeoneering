@@ -3,7 +3,7 @@ stats:
     enabled: true
     traits:
       auradungeoneering/mythic_dungeon_loot_bonus:
-        modifier: 0.1
+        modifier: 1
   auradungeoneering/mythic_boss_attack_bonus:
     enabled: true
     traits:

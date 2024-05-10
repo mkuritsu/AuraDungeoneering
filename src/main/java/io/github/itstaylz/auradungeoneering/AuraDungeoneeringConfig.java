@@ -5,15 +5,12 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class AuraDungeoneeringConfig {
 
     private final YamlConfiguration config;
     private final Map<String, Double> weekdaysXpMultipliers = new HashMap<>();
-
     public AuraDungeoneeringConfig(JavaPlugin plugin) {
         plugin.saveResource("config.yml", false);
         this.config = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "config.yml"));
@@ -46,6 +43,14 @@ public class AuraDungeoneeringConfig {
             case Calendar.SATURDAY -> this.weekdaysXpMultipliers.getOrDefault("saturday", 1.0);
             default -> 1.0;
         };
+    }
+
+    public List<String> getBosses() {
+        return this.config.getStringList("bosses");
+    }
+
+    public String getLootTableKey(String name) {
+        return this.config.getString("loottables." + name);
     }
 
 }

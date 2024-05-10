@@ -5,13 +5,17 @@ import dev.aurelium.auraskills.api.trait.Trait;
 import dev.aurelium.auraskills.api.user.SkillsUser;
 import io.github.itstaylz.auradungeoneering.AuraDungeoneeringConfig;
 import io.github.itstaylz.auradungeoneering.DungeoneeringCustomContent;
+import io.github.itstaylz.auradungeoneering.manager.BossManager;
 import io.lumine.mythic.bukkit.MythicBukkit;
+import io.lumine.mythic.core.mobs.ActiveMob;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Locale;
+import java.util.Optional;
 
 public class MobAttackBonusTrait extends DungeoneeringTrait {
 
@@ -29,10 +33,15 @@ public class MobAttackBonusTrait extends DungeoneeringTrait {
     @EventHandler
     private void onAttack(EntityDamageByEntityEvent event) {
         if (event.getDamager() instanceof Player player && MythicBukkit.inst().getMobManager().isMythicMob(event.getEntity())) {
-            AuraSkillsApi auraSkills = AuraSkillsApi.get();
-            SkillsUser user = auraSkills.getUser(player.getUniqueId());
-            double bonus = user.getBonusTraitLevel(getContent().getMobAttackBonusTrait());
-            event.setDamage(event.getDamage() + event.getDamage() * bonus);
+            Optional<ActiveMob> optMob = MythicBukkit.inst().getMobManager().getActiveMob(event.getEntity().getUniqueId());
+            optMob.ifPresent(mob -> {
+                if (!BossManager.getInstance().isBoss(mob)) {
+                    AuraSkillsApi auraSkills = AuraSkillsApi.get();
+                    SkillsUser user = auraSkills.getUser(player.getUniqueId());
+                    double bonus = user.getBonusTraitLevel(getContent().getBossAttackBonusTrait());
+                    event.setDamage(event.getDamage() + event.getDamage() * bonus);
+                }
+            });
         }
     }
 }
